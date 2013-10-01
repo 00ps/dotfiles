@@ -1,0 +1,7 @@
+set completion-ignore-case on
+set completion-ignore-case on
+set completion-ignore-case on
+
+"\e[1;6D": forward-word
+"\e[1;6C": backward-word
+

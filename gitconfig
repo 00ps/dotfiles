@@ -1,0 +1,24 @@
+[user]
+	name = Fred Badel
+	email = frederic.badel@lotaris.com
+[core]
+	editor = /usr/local/bin/vim
+	excludesfile = /Users/fred/.gitignore_global
+[color]
+	ui = auto
+[alias]
+	br = branch
+	co = checkout
+	ci = commit
+	df = diff
+	lg = log
+	st = status
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+

@@ -24,8 +24,9 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
 " ...
+
 Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
 Bundle 'bash-support.vim'
@@ -39,12 +40,7 @@ Bundle 'spf13/vim-autoclose'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/sessionman.vim'
 Bundle 'matchit.zip'
-""if has("python") || has("python3")
-""	Bundle 'Lokaltog/powerline', {'rtp':'/powerline/bindings/vim'}
-""else
-Bundle 'Lokaltog/vim-powerline'
-""endif
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/powerline', {'rtp':'/powerline/bindings/vim'}
 Bundle 'godlygeek/csapprox'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'flazz/vim-colorschemes'
@@ -52,7 +48,7 @@ Bundle 'mbbill/undotree'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-abolish.git'
-Bundle 'lua.vim'
+" Bundle 'lua.vim'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
@@ -70,9 +66,11 @@ endif
 " 	source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
 " endif
 
-Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/neosnippet'
 Bundle 'honza/vim-snippets'
+Bundle 'SuperTab'
 
 " Phyton support
 Bundle 'klen/python-mode'
@@ -93,7 +91,8 @@ Bundle 'quentindecock/vim-cucumber-align-pipes'
 Bundle 'sudo.vim'
 Bundle 'nginx.vim'
 
-
+Bundle 'Glench/Vim-Jinja2-Syntax'
+Bundle 'vim-kickstart'
 
 filetype plugin indent on     " required!
 
@@ -149,7 +148,7 @@ endif
 if has('statusline')
         set laststatus=2
 
-        " Broken down into easily includeable segments
+       " Broken down into easily includeable segments
         set statusline=%<%f\                     " Filename
         set statusline+=%w%h%m%r                 " Options
         set statusline+=%{fugitive#statusline()} " Git Hotness
@@ -236,7 +235,7 @@ endif
         let g:snips_author = 'Fred Badel <fred@never-mind.ch>'
 
     " NerdTree {
-        map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+        map <C-t> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
         map <leader>e :NERDTreeFind<CR>
         nmap <leader>nt :NERDTreeFind<CR>
 
@@ -331,32 +330,61 @@ endif
 
     " neocomplcache {
         let g:acp_enableAtStartup = 0
-        let g:neocomplcache_enable_at_startup = 1
-        let g:neocomplcache_enable_camel_case_completion = 1
-        let g:neocomplcache_enable_smart_case = 1
-        let g:neocomplcache_enable_underbar_completion = 1
+        ""let g:neocomplcache_enable_at_startup = 1
+        let g:neocomplete#enable_at_startup = 1
+        ""let g:neocomplcache_enable_camel_case_completion = 1
+        ""let g:neocomplcache_enable_smart_case = 1
+        let g:neocomplete#enable_smart_case = 1
+        ""let g:neocomplcache_enable_underbar_completion = 1
         let g:neocomplcache_enable_auto_delimiter = 1
-        let g:neocomplcache_max_list = 15
-        let g:neocomplcache_force_overwrite_completefunc = 1
+        let g:neocomplete#enable_auto_delimiter = 1
+        ""let g:neocomplcache_max_list = 15
+        let g:neocomplete#max_list = 15
+        ""let g:neocomplcache_force_overwrite_completefunc = 1
+        let g:neocomplete#force_overwrite_completefunc = 1
 
         " SuperTab like snippets behavior.
-        imap <silent><expr><TAB> neosnippet#expandable() ?
-                    \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-                    \ "\<C-e>" : "\<TAB>")
-        smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
+        ""imap <silent><expr><TAB> neosnippet#expandable() ?
+        ""            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
+        ""            \ "\<C-e>" : "\<TAB>")
+        ""smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
+
+        " Plugin key-mappings.
+        imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+        smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+        xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+        " SuperTab like snippets behavior.
+        imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: pumvisible() ? "\<C-n>" : "\<TAB>"
+        smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: "\<TAB>"
+
+        " For snippet_complete marker.
+        if has('conceal')
+            set conceallevel=2 concealcursor=i
+        endif
 
         " Define dictionary.
-        let g:neocomplcache_dictionary_filetype_lists = {
+        ""let g:neocomplcache_dictionary_filetype_lists = {
+        let g:neocomplete#sources#dictionary#dictionaries = {
                     \ 'default' : '',
                     \ 'vimshell' : $HOME.'/.vimshell_hist',
                     \ 'scheme' : $HOME.'/.gosh_completions'
                     \ }
 
         " Define keyword.
-        if !exists('g:neocomplcache_keyword_patterns')
-            let g:neocomplcache_keyword_patterns = {}
+        ""if !exists('g:neocomplcache_keyword_patterns')
+        ""    let g:neocomplcache_keyword_patterns = {}
+        ""endif
+        ""let g:neocomplcache_keyword_patterns._ = '\h\w*'
+        if !exists('g:neocomplete#keyword_patterns')
+            let g:neocomplete#keyword_patterns = {}
         endif
-        let g:neocomplcache_keyword_patterns._ = '\h\w*'
+        let g:neocomplete#keyword_patterns._ = '\h\w*'
+
 
         " Plugin key-mappings.
 
@@ -365,27 +393,27 @@ endif
         " let g:spf13_no_neosnippet_expand = 1
         " in your .vimrc.bundles.local file
 
-        if !exists('g:spf13_no_neosnippet_expand')
-            imap <C-k> <Plug>(neosnippet_expand_or_jump)
-            smap <C-k> <Plug>(neosnippet_expand_or_jump)
-        endif
+        ""if !exists('g:spf13_no_neosnippet_expand')
+        ""    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+        ""    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+        ""endif
 
-        inoremap <expr><C-g> neocomplcache#undo_completion()
-        inoremap <expr><C-l> neocomplcache#complete_common_string()
-        inoremap <expr><CR> neocomplcache#complete_common_string()
+        inoremap <expr><C-g> neocomplete#undo_completion()
+        inoremap <expr><C-l> neocomplete#complete_common_string()
+        inoremap <expr><CR> neocomplete#complete_common_string()
 
         " <TAB>: completion.
-        inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-        inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+        ""inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+        ""inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
         " <CR>: close popup
         " <s-CR>: close popup and save indent.
-        inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-        inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+        inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup()"\<CR>" : "\<CR>"
+        inoremap <expr><CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
 
         " <C-h>, <BS>: close popup and delete backword char.
-        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><C-y> neocomplcache#close_popup()
+        inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+        inoremap <expr><C-y> neocomplete#close_popup()
 
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -396,14 +424,33 @@ endif
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
         " Enable heavy omni completion.
-        if !exists('g:neocomplcache_omni_patterns')
-            let g:neocomplcache_omni_patterns = {}
+""        if !exists('g:neocomplcache_omni_patterns')
+""            let g:neocomplcache_omni_patterns = {}
+""        endif
+""        let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+""        let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+""        let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+""        let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+""        let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+        " Enable omni completion.
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+        " Enable heavy omni completion.
+        if !exists('g:neocomplete#sources#omni#input_patterns')
+          let g:neocomplete#sources#omni#input_patterns = {}
         endif
-        let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-        let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-        let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-        let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-        let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+        "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+        "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+        "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+        " For perlomni.vim setting.
+        " https://github.com/c9s/perlomni.vim
+        ""let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
         " Use honza's snippets.
         let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
@@ -412,9 +459,9 @@ endif
         let g:neosnippet#enable_snipmate_compatibility = 1
 
         " For snippet_complete marker.
-        if has('conceal')
-            set conceallevel=2 concealcursor=i
-        endif
+        ""if has('conceal')
+        ""    set conceallevel=2 concealcursor=i
+        ""endif
 
         " Disable the neosnippet preview candidate window
         " When enabled, there can be too much visual noise
@@ -469,9 +516,10 @@ endif
         endif
         if has('gui_macvim')
             set transparency=5      " Make the window slightly transparent
+            set guifont=Meslo\ LG\ S\ for\ Powerline
         endif
     else
-        if &term == 'xterm' || &term == 'screen'
+        if &term == 'xterm-color' || &term == 'screen'
             set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
         endif
         "set term=builtin_ansi       " Make arrow and other keys work
