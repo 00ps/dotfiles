@@ -1,5 +1,4 @@
-# Path ------------------------------------------------------------
-#
+# Path: 
 homebrew=/usr/local/bin:/usr/local/sbin
 export PATH=$homebrew:$PATH
 
@@ -7,15 +6,13 @@ if [ -d ~/bin ]; then
 	export PATH=:~/bin:$PATH  # add your bin folder to the path, if you have it.  It's a good place to add all your scripts
 fi
 
-# use Homebrew's directories rather than ~/.rbenv add to your profile:
+# rbenv uses Homebrew's directories rather than ~/.rbenv 
 export RBENV_ROOT=/usr/local/var/rbenv
 
-# enable shims and autocompletion add to your profile:
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
+## a little bit verbose ... commented out
 # /usr/local/bin/fortune | /usr/local/bin/cowsay
 
-# Load in .bashrc -------------------------------------------------
+# Load in .bashrc: 
 source ~/.bashrc
 
 

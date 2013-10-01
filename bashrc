@@ -1,4 +1,4 @@
-# Colors ----------------------------------------------------------
+# some colors 
 export TERM=xterm-color
 
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
@@ -7,8 +7,6 @@ export CLICOLOR=1
 
 alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
 
-# ls colors, see: http://www.linux-sxs.org/housekeeping/lscolors.html
-#export LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rb=90'  #LS_COLORS is not supported by the default ls command in OS-X
 
 # Setup some colors to use later in interactive shell or scripts
 export COLOR_NC='\e[0m' # No Color
@@ -36,11 +34,6 @@ alias colorslist="set | egrep 'COLOR_\w*'"  # Lists all the colors, uses vars in
 export HISTCONTROL=ignoredups
 shopt -s checkwinsize # After each command, checks the windows size and changes lines and columns
 
-# bash completion settings (actually, these are readline settings)
-#bind "set completion-ignore-case on" # note: bind used instead of sticking these in .inputrc
-#bind "set bell-style none" # no bell
-#bind "set show-all-if-ambiguous On" # show list automatically, without double tab
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     source $(brew --prefix)/etc/bash_completion
 fi
@@ -48,6 +41,10 @@ fi
 if [ -f `brew --prefix`/etc/bash_completion.d/vagrant ]; then
     source `brew --prefix`/etc/bash_completion.d/vagrant
 fi
+
+# enable shims and autocompletion 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 
 # Prompts ----------------------------------------------------------
 # export PS1="\[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with only a path
