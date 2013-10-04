@@ -1,6 +1,6 @@
 set completion-ignore-case on
-set completion-ignore-case on
-set completion-ignore-case on
+set bell-style none
+set show-all-if-ambiguous on
 
 "\e[1;6D": forward-word
 "\e[1;6C": backward-word
