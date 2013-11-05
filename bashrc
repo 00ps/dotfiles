@@ -57,7 +57,7 @@ fi
 
 # Prompts ----------------------------------------------------------
 # export PS1="\[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with only a path
-export PS1="\[${COLOR_GRAY}\]\u@\h \[${COLOR_GREEN}\]\w\$(__git_ps1) \$ \[${COLOR_NC}\]"  # Primary prompt with user, host, and path
+export PS1="\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \$ "  # Primary prompt with user, host, and path
 #export PS1="\h:\W \u\$" # base mac OSX PS1
 
 # This runs before the prompt and sets the title of the xterm* window.  If you set the title in the prompt
