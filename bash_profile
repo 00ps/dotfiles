@@ -15,6 +15,7 @@ export RBENV_ROOT=/usr/local/var/rbenv
 # Load in .bashrc: 
 source ~/.bashrc
 
+export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
 
 # Notes: ----------------------------------------------------------
 # When you start an interactive shell (log in, open terminal or iTerm in OS X, 

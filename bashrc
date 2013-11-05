@@ -45,10 +45,20 @@ fi
 # enable shims and autocompletion 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# enable git bash completion:
+if [ -f ~/.git-completion ]; then
+    source ~/.git-completion
+fi
+
+# enable git branch in the prompt:
+if [ -f ~/.git-prompt ]; then
+    source ~/.git-prompt
+fi
 
 # Prompts ----------------------------------------------------------
 # export PS1="\[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with only a path
-# export PS1="\[${COLOR_GRAY}\]\u@\h \[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with user, host, and path 
+export PS1="\[${COLOR_GRAY}\]\u@\h \[${COLOR_GREEN}\]\w\$(__git_ps1) \$ \[${COLOR_NC}\]"  # Primary prompt with user, host, and path
+#export PS1="\h:\W \u\$" # base mac OSX PS1
 
 # This runs before the prompt and sets the title of the xterm* window.  If you set the title in the prompt
 # weird wrapping errors occur on some systems, so this method is superior

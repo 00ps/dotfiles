@@ -13,6 +13,7 @@
 	df = diff
 	lg = log
 	st = status
+	graph = log --pretty=oneline --graph --decorate --all
 [color "status"]
     added = green bold
     changed = yellow bold
@@ -22,3 +23,5 @@
     local = green bold
     remote = cyan bold
 
+[push]
+	default = simple
