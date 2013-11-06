@@ -1,11 +1,24 @@
 # some colors 
 export TERM=xterm-color
-
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-
 export CLICOLOR=1 
 
-alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
+# setup Vagrant
+export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
+
+# Add Homebrew in my path: 
+homebrew=/usr/local/bin:/usr/local/sbin
+export PATH=$homebrew:$PATH
+
+# add ~/bin foler in my path if present
+# this is a convenient place to store scripts etc ...
+if [ -d ~/bin ]; then
+	export PATH=:~/bin:$PATH  
+fi
+
+# rbenv uses Homebrew's directories rather than ~/.rbenv 
+export RBENV_ROOT=/usr/local/var/rbenv
+
 
 
 # Setup some colors to use later in interactive shell or scripts
@@ -30,10 +43,11 @@ alias colorslist="set | egrep 'COLOR_\w*'"  # Lists all the colors, uses vars in
 
 
 
-# Misc -------------------------------------------------------------
+# Misc 
 export HISTCONTROL=ignoredups
 shopt -s checkwinsize # After each command, checks the windows size and changes lines and columns
 
+# a few bash autocompletion add ons
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     source $(brew --prefix)/etc/bash_completion
 fi
@@ -50,14 +64,15 @@ if [ -f ~/.git-completion ]; then
     source ~/.git-completion
 fi
 
+## let us define a fancy prompt!
+
 # enable git branch in the prompt:
 if [ -f ~/.git-prompt ]; then
     source ~/.git-prompt
 fi
 
-# Prompts ----------------------------------------------------------
 # export PS1="\[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with only a path
-export PS1="\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \$ "  # Primary prompt with user, host, and path
+export PS1="\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \$ "  
 #export PS1="\h:\W \u\$" # base mac OSX PS1
 
 # This runs before the prompt and sets the title of the xterm* window.  If you set the title in the prompt
@@ -74,30 +89,13 @@ function xtitle {  # change the title of your xterm* window
 }
 
 
+# some useful aliases:
 
-# Navigation -------------------------------------------------------
 alias ..='cd ..'
 alias ...='cd .. ; cd ..'
 
-# I got the following from, and mod'd it: http://www.macosxhints.com/article.php?story=20020716005123797
-#    The following aliases (save & show) are for saving frequently used directories
-#    You can save a directory using an abbreviation of your choosing. Eg. save ms
-#    You can subsequently move to one of the saved directories by using cd with
-#    the abbreviation you chose. Eg. cd ms  (Note that no '$' is necessary.)
-if [ ! -f ~/.dirs ]; then  # if doesn't exist, create it
-	touch ~/.dirs
-fi
-
-alias show='cat ~/.dirs'
-save (){
-	command sed "/!$/d" ~/.dirs > ~/.dirs1; \mv ~/.dirs1 ~/.dirs; echo "$@"=\"`pwd`\" >> ~/.dirs; source ~/.dirs ; 
-}
-source ~/.dirs  # Initialization for the above 'save' facility: source the .sdirs file
-shopt -s cdable_vars # set the bash option so that no '$' is required when using the above facility
-
-
-
-# Other aliases ----------------------------------------------------
+# ls 
+alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
 alias ll='ls -hl'
 alias la='ls -a'
 alias lla='ls -lah'
@@ -116,9 +114,7 @@ alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' 
 
 alias veewee="bundle exec veewee"
 
-# Editors ----------------------------------------------------------
-#export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate window to close
-#export EDITOR='gedit'  #Linux/gnome
+# Editor ----------------------------------------------------------
 export EDITOR='vim'  #Command line
 
 ## setup ansible environment:

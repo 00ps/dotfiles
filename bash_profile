@@ -1,23 +1,11 @@
-# Path: 
-homebrew=/usr/local/bin:/usr/local/sbin
-export PATH=$homebrew:$PATH
-
-if [ -d ~/bin ]; then
-	export PATH=:~/bin:$PATH  # add your bin folder to the path, if you have it.  It's a good place to add all your scripts
-fi
-
-# rbenv uses Homebrew's directories rather than ~/.rbenv 
-export RBENV_ROOT=/usr/local/var/rbenv
-
 ## a little bit verbose ... commented out
 # /usr/local/bin/fortune | /usr/local/bin/cowsay
 
 # Load in .bashrc: 
 source ~/.bashrc
 
-export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
 
-# Notes: ----------------------------------------------------------
+# Notes: 
 # When you start an interactive shell (log in, open terminal or iTerm in OS X, 
 # or create a new tab in iTerm) the following files are read and run, in this order:
 #     profile
@@ -31,3 +19,6 @@ export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
 # in this order:
 #     bashrc
 #     .bashrc
+#
+# Therefor, let us keep .bash_profile as clean as possible, and let is source 
+# .bashrc.
