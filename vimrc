@@ -48,7 +48,10 @@ Bundle 'mbbill/undotree'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-abolish.git'
-" Bundle 'lua.vim'
+
+Bundle 'luainspect.vim'
+Bundle '00ps/lua-support'
+Bundle 'xolox/vim-misc'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
