@@ -497,7 +497,7 @@ if has('gui_running')
     endif
     if has('gui_macvim')
         set transparency=5      " Make the window slightly transparent
-        set guifont=Meslo\ LG\ S\ for\ Powerline
+        set guifont=Meslo\ LG\ S\ for\ Powerline:h14
     endif
     else
         if &term == 'xterm-color' || &term == 'screen'
