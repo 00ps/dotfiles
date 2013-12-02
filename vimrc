@@ -87,6 +87,7 @@ Bundle 'quentindecock/vim-cucumber-align-pipes'
 
 Bundle 'sudo.vim'
 Bundle 'nginx.vim'
+Bundle 'apachestyle'
 
 Bundle 'Glench/Vim-Jinja2-Syntax'
 Bundle 'vim-kickstart'
