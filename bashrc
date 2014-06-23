@@ -19,7 +19,11 @@ fi
 # rbenv uses Homebrew's directories rather than ~/.rbenv 
 export RBENV_ROOT=/usr/local/var/rbenv
 
+# adding path to gem
+export PATH=$(brew --prefix ruby)/bin:$PATH
 
+# set JAVA_HOME
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Setup some colors to use later in interactive shell or scripts
 export COLOR_NC='\e[0m' # No Color
@@ -72,7 +76,8 @@ if [ -f ~/.git-prompt ]; then
 fi
 
 # export PS1="\[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with only a path
-export PS1="\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \$ "  
+##export PS1="\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \$ "  
+export PS1="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
 #export PS1="\h:\W \u\$" # base mac OSX PS1
 
 # This runs before the prompt and sets the title of the xterm* window.  If you set the title in the prompt
@@ -120,4 +125,9 @@ export EDITOR='vim'  #Command line
 ## setup ansible environment:
 source ~/GitRepos/ansible/hacking/env-setup -q
 
+#ec2-api-tools
+export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.6.12.0/libexec"
+source ~/.ec2/.initrc
 
+# awscli
+complete -C aws_completer aws

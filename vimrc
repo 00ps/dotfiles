@@ -16,7 +16,7 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
-Bundle 'tpope/vim-fugitive'
+" Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
@@ -28,6 +28,7 @@ Bundle 'FuzzyFinder'
 " ...
 
 Bundle 'The-NERD-tree'
+Bundle 'ldap_schema.vim'
 "Bundle 'The-NERD-Commenter'
 "Bundle 'bash-support.vim'
 Bundle '00ps/bash-support.vim'
@@ -52,6 +53,8 @@ Bundle 'tpope/vim-abolish.git'
 Bundle 'luainspect.vim'
 Bundle '00ps/lua-support'
 Bundle 'xolox/vim-misc'
+"Bundle 'vim-json-bundle'
+Bundle 'elzr/vim-json'
 
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
@@ -67,7 +70,7 @@ endif
 Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/neosnippet'
 Bundle 'honza/vim-snippets'
-Bundle 'SuperTab'
+""Bundle 'SuperTab'
 
 " Phyton support
 Bundle 'klen/python-mode'
@@ -356,6 +359,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)"
     \: "\<TAB>"
 
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabMappingForward = '<c-space>'
+let g:SuperTabMappingBackward = '<s-c-space>'
+
 " For snippet_complete marker.
 if has('conceal')
     set conceallevel=2 concealcursor=i
@@ -514,3 +521,10 @@ au BufWritePost .vimrc so ~/.vimrc
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
+" luainspect settings:
+" don't load luainspect automatically
+let g:lua_inspect_events = ''
+imap <F6> <C-o>:LuaInspectToggle<CR>
+nmap <F6>      :LuaInspectToggle<CR>
+
+:command Tojson %!python -m json.tool
