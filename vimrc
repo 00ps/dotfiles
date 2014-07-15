@@ -27,6 +27,7 @@ Bundle 'FuzzyFinder'
 " Bundle 'git://git.wincent.com/command-t.git'
 " ...
 
+""Bundle 'chase/vim-ansible-yaml'
 Bundle 'The-NERD-tree'
 Bundle 'ldap_schema.vim'
 "Bundle 'The-NERD-Commenter'
@@ -89,7 +90,8 @@ Bundle 'tpope/vim-cucumber'
 Bundle 'quentindecock/vim-cucumber-align-pipes'
 
 Bundle 'sudo.vim'
-Bundle 'nginx.vim'
+" Bundle 'nginx.vim'
+Bundle 'chase/nginx.vim' 
 Bundle 'apachestyle'
 
 Bundle 'Glench/Vim-Jinja2-Syntax'

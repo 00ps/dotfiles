@@ -93,6 +93,15 @@ function xtitle {  # change the title of your xterm* window
   echo -ne "\033]0;$1\007" 
 }
 
+# source CDPATH if exists
+if [ -f ~/.bash/cdpath ]; then
+    source ~/.bash/cdpath
+fi
+
+# source dvm env if exists
+if [ -f ~/.bash/dvm ]; then
+    source ~/.bash/dvm
+fi
 
 # some useful aliases:
 
