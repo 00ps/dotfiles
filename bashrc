@@ -135,7 +135,7 @@ export EDITOR='vim'  #Command line
 source ~/GitRepos/ansible/hacking/env-setup -q
 
 #ec2-api-tools
-export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.6.12.0/libexec"
+export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.7.1.0/libexec"
 source ~/.ec2/.initrc
 
 # awscli
