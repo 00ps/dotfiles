@@ -74,15 +74,25 @@ if [ -f ~/.git-completion ]; then
 fi
 
 ## let us define a fancy prompt!
-
-# enable git branch in the prompt:
-if [ -f ~/.git-prompt ]; then
+# if bash-git-prompt is installed use it
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    export GIT_PROMPT_ONLY_IN_REPO=1
+    export GIT_PROMPT_START="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w"
+    export GIT_PROMPT_END="\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
+    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+# fallback on old git prompt
+elif [ -f ~/.git-prompt ]; then
     source ~/.git-prompt
+    export PS1="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
+else
+# last resort... default mac osx prompt
+    export PS1="\h:\W \u\$"
 fi
+
 
 # export PS1="\[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with only a path
 ##export PS1="\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \$ "  
-export PS1="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
+#export PS1="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
 #export PS1="\h:\W \u\$" # base mac OSX PS1
 
 # This runs before the prompt and sets the title of the xterm* window.  If you set the title in the prompt
