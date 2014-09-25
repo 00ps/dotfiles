@@ -73,22 +73,6 @@ if [ -f ~/.git-completion ]; then
     source ~/.git-completion
 fi
 
-## let us define a fancy prompt!
-# if bash-git-prompt is installed use it
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-    export GIT_PROMPT_ONLY_IN_REPO=1
-    export GIT_PROMPT_START="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w"
-    export GIT_PROMPT_END="\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
-    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
-# fallback on old git prompt
-elif [ -f ~/.git-prompt ]; then
-    source ~/.git-prompt
-    export PS1="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
-else
-# last resort... default mac osx prompt
-    export PS1="\h:\W \u\$"
-fi
-
 
 # export PS1="\[${COLOR_GREEN}\]\w > \[${COLOR_NC}\]"  # Primary prompt with only a path
 ##export PS1="\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \$ "  
@@ -155,3 +139,17 @@ source ~/.ec2/.initrc
 
 # awscli
 complete -C aws_completer aws
+
+## let us define a fancy prompt!
+# if bash-git-prompt is installed use it
+if [ -f $(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh ]; then
+    source $(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh
+    export GIT_PROMPT_START="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w"
+    export GIT_PROMPT_END="\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
+elif [ -f ~/.git-prompt ]; then
+    source ~/.git-prompt
+    export PS1="\[\e[0;1m\]\[${COLOR_NC}\]┌─\[${COLOR_CYAN}\]\u@\h \[${COLOR_GREEN}\]\w\[${COLOR_RED}\]\$(__git_ps1)\[${COLOR_NC}\] \n└──┤|▶ \[\e[0m\]"
+else
+    export PS1="\h:\W \u\$"
+fi
+
