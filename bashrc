@@ -52,8 +52,13 @@ export HISTCONTROL=ignoredups
 shopt -s checkwinsize # After each command, checks the windows size and changes lines and columns
 
 # a few bash autocompletion add ons
+# for homebrew bash-completion (1)
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     source $(brew --prefix)/etc/bash_completion
+fi
+# for homebrew bash-completion2
+if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+    . $(brew --prefix)/share/bash-completion/bash_completion
 fi
 
 if [ -f `brew --prefix`/etc/bash_completion.d/vagrant ]; then
