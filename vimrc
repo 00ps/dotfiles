@@ -14,26 +14,15 @@ let mapleader = ","
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
-"
-" original repos on github
-" Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-" non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
-" ...
-
-""Bundle 'chase/vim-ansible-yaml'
 Bundle 'The-NERD-tree'
 Bundle 'ldap_schema.vim'
-"Bundle 'The-NERD-Commenter'
-"Bundle 'bash-support.vim'
+" adding my own fork to keep the personalization
 Bundle '00ps/bash-support.vim'
-"Bundle 'Puppet-Syntax-Highlighting'
 Bundle 'rodjek/vim-puppet'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'spf13/vim-colors'
@@ -50,13 +39,10 @@ Bundle 'mbbill/undotree'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-abolish.git'
-
 Bundle 'luainspect.vim'
 Bundle '00ps/lua-support'
 Bundle 'xolox/vim-misc'
-"Bundle 'vim-json-bundle'
 Bundle 'elzr/vim-json'
-
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mattn/webapi-vim'
@@ -66,19 +52,14 @@ Bundle 'godlygeek/tabular'
 if executable('ctags')
 	Bundle 'majutsushi/tagbar'
 endif
-
-" Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/neosnippet'
 Bundle 'honza/vim-snippets'
-""Bundle 'SuperTab'
-
 " Phyton support
 Bundle 'klen/python-mode'
 Bundle 'python.vim'
 Bundle 'python_match.vim'
 Bundle 'pythoncomplete'
-
 " HTML
 Bundle 'amirh/HTML-AutoCloseTag'
 Bundle 'hail2u/vim-css3-syntax'
@@ -90,12 +71,13 @@ Bundle 'tpope/vim-cucumber'
 Bundle 'quentindecock/vim-cucumber-align-pipes'
 
 Bundle 'sudo.vim'
-" Bundle 'nginx.vim'
 Bundle 'chase/nginx.vim' 
 Bundle 'apachestyle'
 
 Bundle 'Glench/Vim-Jinja2-Syntax'
 Bundle 'vim-kickstart'
+
+Bundle 'clones/vim-zsh'
 
 filetype plugin indent on     " required!
 
@@ -193,14 +175,6 @@ set numberwidth=2
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
-
-" OmniComplete {
-""if has("autocmd") && exists("+omnifunc")
-""	autocmd Filetype *
-""        \if &omnifunc == "" |
-""        \setlocal omnifunc=syntaxcomplete#Complete |
-""        \endif
-""endif
 
 hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
@@ -342,12 +316,6 @@ let g:neocomplete#max_list = 15
 ""let g:neocomplcache_force_overwrite_completefunc = 1
 let g:neocomplete#force_overwrite_completefunc = 1
 
-" SuperTab like snippets behavior.
-""imap <silent><expr><TAB> neosnippet#expandable() ?
-""            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-""            \ "\<C-e>" : "\<TAB>")
-""smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
-
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -379,35 +347,14 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ }
 
 " Define keyword.
-""if !exists('g:neocomplcache_keyword_patterns')
-""    let g:neocomplcache_keyword_patterns = {}
-""endif
-""let g:neocomplcache_keyword_patterns._ = '\h\w*'
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns._ = '\h\w*'
 
-
-" Plugin key-mappings.
-
-" These two lines conflict with the default digraph mapping of <C-K>
-" If you prefer that functionality, add
-" let g:spf13_no_neosnippet_expand = 1
-" in your .vimrc.bundles.local file
-
-""if !exists('g:spf13_no_neosnippet_expand')
-""    imap <C-k> <Plug>(neosnippet_expand_or_jump)
-""    smap <C-k> <Plug>(neosnippet_expand_or_jump)
-""endif
-
 inoremap <expr><C-g> neocomplete#undo_completion()
 inoremap <expr><C-l> neocomplete#complete_common_string()
 inoremap <expr><CR> neocomplete#complete_common_string()
-
-" <TAB>: completion.
-""inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-""inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " <CR>: close popup
 " <s-CR>: close popup and save indent.
@@ -426,34 +373,17 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
-""        let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-""        let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-""        let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-""        let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-""        let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
 endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-""let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " Use honza's snippets.
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " Enable neosnippet snipmate compatibility mode
 let g:neosnippet#enable_snipmate_compatibility = 1
-
-" For snippet_complete marker.
-""if has('conceal')
-""    set conceallevel=2 concealcursor=i
-""endif
 
 " Disable the neosnippet preview candidate window
 " When enabled, there can be too much visual noise
@@ -548,5 +478,7 @@ if has("gui_macvim")
   " Command-0 goes to the last tab
   noremap <D-0> :tablast<CR>
 endif
+
+autocmd BufNewFile,BufRead *.zsh setlocal filetype=zsh
 
 :command Tojson %!python -m json.tool
