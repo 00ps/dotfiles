@@ -140,7 +140,6 @@ source ~/.ec2/.initrc
 # awscli
 complete -C aws_completer aws
 
-## let us define a fancy prompt!
 # if bash-git-prompt is installed use it
 if [ -f $(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh ]; then
     source $(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh
