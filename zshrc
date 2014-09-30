@@ -27,7 +27,7 @@ ZSH_CUSTOM=~/GitRepos/dotfiles/custom #/path/to/new-custom-folder
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew battery gem jsontools pass vagrant sudo zsh-syntax-highlighting)
+plugins=(brew battery jsontools pass sudo git-extras osx zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,4 +134,4 @@ alias top='top -o cpu'
 alias systail='tail -f /var/log/system.log'
 alias m='more'
 alias df='df -h'
-alias git='git'
+alias gi='git'
