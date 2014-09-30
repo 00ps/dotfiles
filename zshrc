@@ -42,7 +42,7 @@ source $GITREPOS/zsh-git-prompt/zshrc.sh
 ZSH_THEME_GIT_PROMPT_PREFIX="[ "
 ZSH_THEME_GIT_PROMPT_SUFFIX=" ]"
 ZSH_THEME_GIT_PROMPT_SEPARATOR=" |"
-ZSH_THEME_GIT_PROMPT_BRANCH=" %{$fg_bold[magenta]%}"
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[magenta]%}"
 ZSH_THEME_GIT_PROMPT_STAGED=" %{$fg[red]%}%{●%G%}"
 ZSH_THEME_GIT_PROMPT_CONFLICTS=" %{$fg[red]%}%{✖%G%}"
 ZSH_THEME_GIT_PROMPT_CHANGED=" %{$fg[blue]%}%{✚%G%}"
@@ -98,7 +98,7 @@ export CDPATH='.:~:~/GitRepos:~/Documents'
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
 
 ###
 # vim is the default editor
@@ -134,4 +134,4 @@ alias top='top -o cpu'
 alias systail='tail -f /var/log/system.log'
 alias m='more'
 alias df='df -h'
-
+alias git='git'
