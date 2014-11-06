@@ -76,8 +76,10 @@ Bundle 'apachestyle'
 
 Bundle 'Glench/Vim-Jinja2-Syntax'
 Bundle 'vim-kickstart'
-
+Plugin 'rizzatti/dash.vim'
 Bundle 'clones/vim-zsh'
+Bundle 'parkr/vim-jekyll'
+Bundle 'ntpeters/vim-better-whitespace'
 
 filetype plugin indent on     " required!
 
@@ -481,4 +483,4 @@ endif
 
 autocmd BufNewFile,BufRead *.zsh setlocal filetype=zsh
 
-:command Tojson %!python -m json.tool
+:command NiceJson %!python -m json.tool

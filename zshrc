@@ -27,7 +27,7 @@ ZSH_CUSTOM=~/GitRepos/dotfiles/custom #/path/to/new-custom-folder
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew battery jsontools pass sudo git-extras osx zsh-syntax-highlighting)
+plugins=(brew battery jsontools pass sudo git git-extras vagrant osx zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -36,6 +36,8 @@ source $ZSH/oh-my-zsh.sh
 # using zsh-git-prompt upstream project instead
 # of omz plugin:
 source $GITREPOS/zsh-git-prompt/zshrc.sh
+
+GIT_PROMPT_EXECUTABLE="haskell"
 
 # git-prompt theming
 # ... this does not work when called from the template
