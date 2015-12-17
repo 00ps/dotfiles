@@ -83,7 +83,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # although i am not sure that everything is really relevant
 # with zsh
 export TERM=xterm-color
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+export GREP_OPTIONS='--color=auto' GREP_COLOR='01;31'
 export CLICOLOR=1 
 
 #####

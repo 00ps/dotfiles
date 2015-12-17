@@ -1,6 +1,6 @@
 [user]
 	name = Fred Badel
-	email = frederic.badel@lotaris.com
+	email = fred@never-mind.ch
 [core]
 	editor = /usr/local/bin/vim
 	excludesfile = /Users/fred/.gitignore_global
